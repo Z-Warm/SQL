@@ -1,15 +1,11 @@
-/*
-4	Знайдіть працівників, котрі не бають керівників в своєму підрозділі
-*/
-Select Employees.Name from Employees where Employees.EmployeeID <>0
-and Employees.BossID = Employees.EmployeeID
-union
-Select Employees.Name from Employees where Employees.EmployeeID <>0
-and Employees.BossID = 0
-union
-Select Employees.Name from Employees where Employees.EmployeeID <>0
-and Employees.BossID is null
-union
-Select e.Name from Employees e  where e.BossID in
-(select a.EmployeeID from Employees a where a.DepartmentID <> e.DepartmentID)
+/*‡найдґть працґвникґв, котрґ не мають керґвникґв в сво№му пґдроздґлґ
+Find employees, who don't have a boss in their department*/
+
+select a.name  from employees a left join  employees b
+on b.employeeID = a.BossID
+where b.name is null
+union 
+select a.name  from employees a  join  employees b
+on b.employeeID = a.BossID
+and a.`DepartmentID` != b.`DepartmentID`
 

@@ -1,10 +1,5 @@
-/*
- 2	Знайдіть працівників, котрі мають найбільшу зарплатню в своєму підрозділі (department).
-*/
+/*	‡найдґть працґвникґв, котрґ мають найбґльшу зарплатню в сво№му пґдроздґлґ (department).
+Find employees, who have maximum of salary in their department*/
 
-Select  E.Name, max(E.Salary)
-from Departments D left join Employees E 
-on E.DepartmentID = D.DepartmentID 
-and E.EmployeeID in (select Employees.EmployeeID from Employees
-where Employees.Salary = (select  max(Salary) from Employees where Employees.DepartmentID = E.DepartmentID))
-group by E.Name
+select a.name, MAX(a.salary) from employees a
+group by (a.departmentid)

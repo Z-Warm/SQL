@@ -1,8 +1,6 @@
-/*
- 5	Знайдіть котру загальну суму зарплатні отримує кожен підрозділ
- */
+ /*‡найдґть котру загальну суму зарплатнґ отриму№ кожен пґдроздґл.
+Show amount of salary for each department*/
 
- Select Departments.Name, Sum(Employees.Salary)
- from Departments left join Employees
- on Employees.DepartmentID = Departments.DepartmentID
- Group by Departments.Name
+select a.name, sum(b.salary)  from departments a left join  employees b
+on a.departmentID = b.DepartmentID
+group by a.`DepartmentID`

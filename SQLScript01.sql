@@ -1,10 +1,7 @@
-/*
-	1	«найд≥ть ≥мена (name) вс≥х прац≥вник≥в (employees), 
-	зарплата (salary) €ких б≥льша за кер≥вника (boss).
-*/
+/*Знайдіть імена (name) всіх працівників (employees), зарплата (salary) яких більша за керівника (boss).
+Find names of all employees, whos salary is more then their boss salary*/
 
-
-Select e.name from Employees e 
-Where EmployeeID in 
-(select e.EmployeeID where e.Salary > (select Employees.Salary from Employees where Employees.EmployeeID = e.BossID))
+select a.name from employees a join  employees b
+on b.employeeID = a.BossID
+and a.salary > b.salary
  

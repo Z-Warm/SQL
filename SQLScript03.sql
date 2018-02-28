@@ -1,11 +1,7 @@
-/*
-	3	Знайдіть назви всіх підрозділи, котрі мають менш ніж 3-х працівників
-*/
+/*‡найдґть назви всґх пґдроздґли, котрґ мають менш нґж 3-х працґвникґв
+Find name of all departments, which have less than 3 employees*/
 
-Select Departments.Name
---, count(Employees.EmployeeID) 'Count of employyes'/* if you want to show count*/ 
-from
-Departments left join Employees on Employees.DepartmentID = Departments.DepartmentID 
---and Employees.EmployeeID <> Employees.BossID /*if count without Boss*/
-group by Departments.Name
-having count(Employees.EmployeeID)<3
+select b.name from employees a right join departments b
+on b.`DepartmentID` = a.`DepartmentID`
+group by b.`name`
+having COUNT(a.`EmployeeID`) < 3
