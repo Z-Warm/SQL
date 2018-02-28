@@ -1,0 +1,77 @@
+
+SET FOREIGN_KEY_CHECKS=0;
+
+DROP DATABASE IF EXISTS `employee`;
+
+CREATE DATABASE `Employee`
+    CHARACTER SET 'utf8'
+    COLLATE 'utf8_general_ci';
+
+USE `employee`;
+
+#
+# Удаление объектов БД
+#
+
+DROP TABLE IF EXISTS `employees`;
+DROP TABLE IF EXISTS `departments`;
+
+#
+# Структура для таблицы `departments`: 
+#
+
+CREATE TABLE `departments` (
+  `DepartmentID` INTEGER(11) NOT NULL,
+  `name` VARCHAR(50) COLLATE utf8_general_ci DEFAULT NULL,
+  PRIMARY KEY (`DepartmentID`)
+)ENGINE=InnoDB
+AVG_ROW_LENGTH=5461 CHARACTER SET 'utf8' COLLATE 'utf8_general_ci'
+COMMENT=''
+;
+
+#
+# Структура для таблицы `employees`: 
+#
+
+CREATE TABLE `employees` (
+  `EmployeeID` INTEGER(11) NOT NULL,
+  `DepartmentID` INTEGER(11) DEFAULT NULL,
+  `BossID` INTEGER(11) DEFAULT NULL,
+  `name` VARCHAR(50) COLLATE utf8_general_ci DEFAULT NULL,
+  `Salary` INTEGER(11) DEFAULT NULL,
+  PRIMARY KEY (`EmployeeID`),
+  UNIQUE KEY `EmployeeID` (`EmployeeID`),
+  KEY `DepartmentID` (`DepartmentID`),
+  CONSTRAINT `employees_fk1` FOREIGN KEY (`DepartmentID`) REFERENCES departments (`DepartmentID`)
+)ENGINE=InnoDB
+AVG_ROW_LENGTH=1638 CHARACTER SET 'utf8' COLLATE 'utf8_general_ci'
+COMMENT=''
+;
+
+#
+# Data for the `departments` table  (LIMIT -496,500)
+#
+
+INSERT INTO `departments` (`DepartmentID`, `name`) VALUES 
+  (1,'Depth1'),
+  (2,'Depth2'),
+  (3,'Depth3');
+COMMIT;
+
+#
+# Data for the `employees` table  (LIMIT -489,500)
+#
+
+INSERT INTO `employees` (`EmployeeID`, `DepartmentID`, `BossID`, `name`, `Salary`) VALUES 
+  (1,1,0,'Name 1',500),
+  (2,1,1,'name1.2',600),
+  (3,1,1,'name1.3',700),
+  (4,1,1,'name1.4',800),
+  (5,2,0,'name2.1',900),
+  (6,2,5,'name2.2',1000),
+  (7,2,5,'name2.3',1100),
+  (8,3,2,'name3.1',1200),
+  (9,2,5,'Name2.4',1300),
+  (10,2,2,'name 2.5',1500);
+COMMIT;
+
